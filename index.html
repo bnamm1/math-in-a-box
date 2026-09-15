@@ -201,6 +201,33 @@
     .timeline .what { grid-column: 2; margin-top: -6px; }
   }
 
+  /* research */
+  .rs-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  @media (max-width: 860px) { .rs-grid { grid-template-columns: 1fr; } }
+  .rs-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 10px; align-content: start; }
+  .rs-card h3 { font-size: 1.1rem; }
+  .rs-card ul { margin: 0; padding-left: 18px; display: grid; gap: 8px; color: var(--ink); font-size: 0.97rem; }
+  .rs-card li::marker { color: var(--coral); }
+  .rs-card .src { font-size: 0.82rem; color: var(--ink-soft); }
+  .rs-scores { margin-top: 36px; }
+  .rs-scores h3 { font-size: 1.25rem; margin-bottom: 6px; }
+  .rs-scores p { color: var(--ink-soft); max-width: 66ch; }
+  .tbl-wrap { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper); }
+  table.scores { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.95rem; font-variant-numeric: tabular-nums; }
+  table.scores th, table.scores td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--line); }
+  table.scores th { font-family: "Fredoka", sans-serif; font-weight: 600; color: var(--scorch); background: var(--grain); }
+  table.scores td:not(:first-child), table.scores th:not(:first-child) { text-align: center; }
+  table.scores tr:last-child td { border-bottom: 0; }
+  table.scores tfoot td { font-weight: 800; color: var(--scorch); background: color-mix(in srgb, var(--mustard) 18%, transparent); }
+  table.scores .win { color: var(--teal-deep); font-weight: 800; }
+  .rs-plan { margin-top: 36px; display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+  @media (max-width: 760px) { .rs-plan { grid-template-columns: 1fr; } }
+  .rs-plan ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .rs-plan li { display: grid; grid-template-columns: 110px 1fr; gap: 12px; padding: 12px 16px; background: var(--paper); border: 1px solid var(--line); border-radius: 12px; font-size: 0.97rem; }
+  .rs-plan li b { font-family: "Fredoka", sans-serif; font-weight: 600; color: var(--scorch); }
+  .rs-plan li span { color: var(--ink); }
+  .rs-plan li small { display: block; color: var(--ink-soft); }
+
   /* team */
   .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 800px) { .team { grid-template-columns: 1fr; } }
@@ -263,6 +290,7 @@
         <li><a href="#story">Story</a></li>
         <li><a href="#box">What's inside</a></li>
         <li><a href="#history">History</a></li>
+        <li><a href="#research">Research</a></li>
         <li><a href="#team">Team</a></li>
         <li><a href="#partners">Partners</a></li>
         <li><a href="#involved">Get involved</a></li>
@@ -433,6 +461,82 @@
           <li><span class="when">Sep 2026</span><span class="what"><b>First grant.</b> Awarded a $2,000 Fall 2026 Mini Grant by the <a href="https://www.ymcasf.org/program/youth-empowerment-fund/" target="_blank" rel="noopener">Youth Empowerment Fund</a> at Urban Services YMCA, which backs youth-led projects in San Francisco.</span></li>
           <li class="next"><span class="when">Nov 2026</span><span class="what"><b>First kits delivered.</b> Kit 1 goes to families in San Francisco through <a href="https://www.childrenofshelters.org/" target="_blank" rel="noopener">Children of Shelters</a>, and in Daly City and Redwood City through <a href="https://lifemoves.org/" target="_blank" rel="noopener">LifeMoves</a>.</span></li>
           <li class="next"><span class="when">2027</span><span class="what"><b>Scaling up.</b> Kits reach San Francisco shelters through Children of Shelters, more sites join, and the monthly curriculum begins.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="research">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">The research</span>
+        <h2>Why a box, and not a tutoring program.</h2>
+        <p class="measure">In the summer of 2025, in an eight-week youth leadership program called Brand YOUth, Brandon picked one problem to study: STEM education for children experiencing homelessness in San Francisco. He defined it, gathered the numbers, looked at what had already been tried, and scored three possible responses against each other before settling on kits. This is what that work found.</p>
+      </div>
+
+      <div class="rs-grid">
+        <div class="rs-card">
+          <h3>The problem, in numbers</h3>
+          <ul>
+            <li>Over 3,000 students in San Francisco public schools are identified as homeless each year, many living in shelters, cars, or doubled-up housing.</li>
+            <li>Students experiencing homelessness are about three times as likely to be chronically absent.</li>
+            <li>Statewide, they trail their peers by roughly 20 points in math and English proficiency, and their post-pandemic recovery has been slower.</li>
+            <li>Young people without a high school diploma are four to five times more likely to experience homelessness as adults.</li>
+          </ul>
+          <span class="src">Drawn from the 2024 San Francisco Point-in-Time Count, California student data, and Chapin Hall research.</span>
+        </div>
+        <div class="rs-card">
+          <h3>What hasn't worked</h3>
+          <ul>
+            <li><b>After-school STEM programs</b> assume stable housing, transportation, and free afternoons. Kids on shelter schedules or long commutes can't attend regularly, so programs open to everyone quietly exclude them.</li>
+            <li><b>One-off "exposure days"</b> from tech companies rarely coordinate with schools or shelters and rarely follow up. The most vulnerable students often aren't invited or can't get there.</li>
+            <li><b>Online courses and coding bootcamps</b> need a laptop, internet, and a quiet place. For students without them, remote learning widened the gap instead of closing it.</li>
+          </ul>
+        </div>
+        <div class="rs-card">
+          <h3>What a kit has to be</h3>
+          <ul>
+            <li>Works with no internet, no screen, and no tutor, because none of those can be assumed.</li>
+            <li>Small enough for a bunk or a lap, because a table can't be assumed either.</li>
+            <li>Built around puzzles and hands-on play, the way well-resourced schools teach young children, because problem-solving matters more than any particular math topic.</li>
+            <li>A gift, not a loan, because families move and a kit should move with them.</li>
+          </ul>
+          <span class="src">Existing kit makers Brandon studied: MEL Science, KiwiCo, Steve Spangler Science, Circuit Mess, and KinderLab's robotics kits for shelters.</span>
+        </div>
+      </div>
+
+      <div class="rs-scores">
+        <h3>Three options, scored</h3>
+        <p>Brandon rated each idea from 1 to 10 on six questions. Tutoring lost on age: every program he found required volunteers to be 16. Helping organizations with data and websites was feasible but not distinctive. Kits scored highest on interest, uniqueness, and impact, and that decided it.</p>
+        <div class="tbl-wrap">
+          <table class="scores">
+            <thead>
+              <tr><th>Question</th><th>Tutoring</th><th>Tech &amp; data help for nonprofits</th><th>STEM kits</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>How interested am I?</td><td>7</td><td>6</td><td>8</td></tr>
+              <tr><td>How feasible and easy?</td><td>9</td><td>3</td><td>3</td></tr>
+              <tr><td>How interested would others be?</td><td>6</td><td>8</td><td>9</td></tr>
+              <tr><td>How quickly could I get it going?</td><td>3</td><td>6</td><td>6</td></tr>
+              <tr><td>How impactful is it?</td><td>7</td><td>7</td><td>7</td></tr>
+              <tr><td>How unique is it?</td><td>2</td><td>6</td><td>9</td></tr>
+            </tbody>
+            <tfoot>
+              <tr><td>Total (out of 60)</td><td>34</td><td>36</td><td class="win">42</td></tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <div class="rs-plan">
+        <div>
+          <h3 style="font-size:1.25rem; margin-bottom:6px">The plan he pitched in August 2025</h3>
+          <p class="measure" style="color: var(--ink-soft)">The final Brand YOUth pitch, titled "Math in a Box: hands-on math and engineering for students without stable access," laid out a three-stage plan across high school and a goal of 100 kits. A year later the first kits are built and the 100-kit goal has moved up to the end of 2026.</p>
+        </div>
+        <ol>
+          <li><b>9th grade</b><span>Make kits. Five designs, four or five copies of each, donated through a partner.<small>Self-funded · goal 15–20 kits</small></span></li>
+          <li><b>10th grade</b><span>Turn it into a club so more hands can design, cut, and assemble.<small>Grants and fundraising · goal 50 kits</small></span></li>
+          <li><b>11th–12th</b><span>Explore a buy-one-give-one model so the kits fund themselves.<small>Goal 75+ kits</small></span></li>
         </ol>
       </div>
     </div>
