@@ -11,7 +11,7 @@ A single self-contained page (`index.html`). No build step, no dependencies beyo
 ## Custom domain
 
 1. Buy the domain (Cloudflare Registrar, Porkbun, Namecheap — any registrar works).
-2. Replace the contents of `CNAME` with the bare domain, e.g. `mathinabox.org` (one line, no `https://`).
+2. Replace the contents of `CNAME` with the bare domain, `mathinabox.org` (one line, no `https://`).
 3. At the registrar add DNS records:
    - `A` records for the apex (`@`) → `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
    - `CNAME` record for `www` → `<username>.github.io`
