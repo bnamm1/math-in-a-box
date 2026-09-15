@@ -205,6 +205,7 @@
   .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
   @media (max-width: 800px) { .team { grid-template-columns: 1fr; } }
   .person { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 8px; }
+  .person .headshot { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid var(--grain); margin-bottom: 6px; }
   .person .role { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 800; color: var(--coral); }
   .person p { color: var(--ink-soft); font-size: 0.97rem; }
 
@@ -443,7 +444,7 @@
         <h2>Students at Proof School, with adults who help where it counts.</h2>
       </div>
       <div class="team">
-        <div class="person"><span class="role">Founder &amp; project lead</span><h3>Brandon Yoonsu Nam</h3><p>Designs the puzzles and booklets, cuts and assembles the kits, and works with shelter partners and funders. Davidson Institute Class of 2026 Ambassador; member-scholar at Sequoia Fabrica.</p></div>
+        <div class="person"><img class="headshot" src="brandon.jpg" alt="Brandon Yoonsu Nam" width="96" height="96"><span class="role">Founder &amp; project lead</span><h3>Brandon Yoonsu Nam</h3><p>Designs the puzzles and booklets, cuts and assembles the kits, and works with shelter partners and funders. Davidson Institute Class of 2026 Ambassador; member-scholar at Sequoia Fabrica.</p></div>
         <div class="person"><span class="role">Curriculum lead</span><h3>Aria Krishnamoorthy</h3><p>Leads curriculum development: designing and testing new puzzles and activities and shaping what goes into each box. Will lead the Math in a Box club at Proof School once it launches.</p></div>
         <div class="person"><span class="role">Adult ally</span><h3>Linda Green</h3><p>Proof School faculty. Adult advisor for the project's grant work and its growth into a school club.</p></div>
       </div>
