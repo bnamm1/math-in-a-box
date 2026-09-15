@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Math in a Box: free, hands-on laser-cut math kits for children experiencing homelessness in San Francisco. A student-led project.">
+<title>Math in a Box</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap">
+<style>
+  :root {
+    --birch: #F3E6CC;
+    --paper: #FFFBF3;
+    --grain: #E7D6B3;
+    --scorch: #3A2415;
+    --ink: #4A3323;
+    --ink-soft: #7A6250;
+    --teal: #1E7A8C;
+    --teal-deep: #135A68;
+    --coral: #E2603B;
+    --mustard: #F2B63B;
+    --line: rgba(58, 36, 21, 0.14);
+    --shadow: 0 10px 30px rgba(58, 36, 21, 0.10);
+    --radius: 14px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --birch: #221B15;
+      --paper: #2B221B;
+      --grain: #3A2E24;
+      --scorch: #F6EBD7;
+      --ink: #EFE2CB;
+      --ink-soft: #C4B098;
+      --teal: #5FBBCB;
+      --teal-deep: #8CD3DF;
+      --coral: #F08663;
+      --mustard: #F6C55B;
+      --line: rgba(246, 235, 215, 0.16);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --birch: #221B15;
+    --paper: #2B221B;
+    --grain: #3A2E24;
+    --scorch: #F6EBD7;
+    --ink: #EFE2CB;
+    --ink-soft: #C4B098;
+    --teal: #5FBBCB;
+    --teal-deep: #8CD3DF;
+    --coral: #F08663;
+    --mustard: #F6C55B;
+    --line: rgba(246, 235, 215, 0.16);
+    --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--birch);
+    color: var(--ink);
+    font-family: "Nunito", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+  h1, h2, h3, .display {
+    font-family: "Fredoka", "Nunito", "Segoe UI", system-ui, sans-serif;
+    color: var(--scorch);
+    line-height: 1.12;
+    text-wrap: balance;
+    margin: 0;
+  }
+  h1 { font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700; }
+  h2 { font-size: clamp(1.7rem, 3.4vw, 2.4rem); font-weight: 600; }
+  h3 { font-size: 1.2rem; font-weight: 600; }
+  p { margin: 0; }
+  a { color: var(--teal-deep); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--mustard); outline-offset: 3px; }
+
+  .wrap { max-width: 1080px; margin: 0 auto; padding-inline: clamp(16px, 4vw, 40px); }
+  .eyebrow {
+    display: inline-block;
+    font-family: "Fredoka", sans-serif;
+    font-size: 0.8rem; font-weight: 600;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 10px;
+  }
+  .lede { font-size: 1.15rem; max-width: 62ch; color: var(--ink); }
+  .measure { max-width: 66ch; }
+  section { padding-block: clamp(56px, 8vw, 96px); }
+  section + section { border-top: 1px solid var(--line); }
+  .section-head { display: grid; gap: 14px; margin-bottom: clamp(28px, 4vw, 44px); max-width: 70ch; }
+
+  /* nav */
+  .nav {
+    position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+    background: color-mix(in srgb, var(--birch) 88%, transparent);
+    backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--scorch); font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.2rem; }
+  .brand svg { width: 34px; height: 34px; }
+  .nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 4px 18px; flex-wrap: wrap; }
+  .nav ul a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.95rem; padding: 4px 0; border-bottom: 2px solid transparent; }
+  .nav ul a:hover { border-bottom-color: var(--coral); }
+
+  /* buttons */
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 1rem;
+    padding: 12px 22px; border-radius: 999px; text-decoration: none;
+    border: 2px solid transparent; transition: transform .15s ease, background .15s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--coral); color: #fff; }
+  .btn-primary:hover { background: color-mix(in srgb, var(--coral) 88%, black); }
+  .btn-ghost { border-color: var(--scorch); color: var(--scorch); }
+  .btn-ghost:hover { background: var(--grain); }
+
+  /* hero */
+  .hero { padding-block: clamp(40px, 7vw, 88px) clamp(40px, 6vw, 72px); }
+  .hero .wrap { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+  .hero-copy { display: grid; gap: 22px; }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-art { position: relative; }
+  .hero-art svg { width: 100%; height: auto; display: block; }
+  .hero-caption { font-size: 0.85rem; color: var(--ink-soft); margin-top: 8px; text-align: center; }
+  @media (max-width: 760px) {
+    .hero .wrap { grid-template-columns: 1fr; }
+    .hero-art { max-width: 420px; margin: 0 auto; }
+  }
+
+  /* stats */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+  .stat { background: var(--paper); border-radius: var(--radius); padding: 22px 20px; border: 1px solid var(--line); display: grid; gap: 4px; }
+  .stat .num { font-family: "Fredoka", sans-serif; font-size: 2.2rem; font-weight: 700; color: var(--teal); line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .lbl { font-size: 0.95rem; color: var(--ink-soft); }
+  @media (max-width: 800px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+
+  /* two column prose */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 4vw, 56px); align-items: start; }
+  @media (max-width: 760px) { .cols { grid-template-columns: 1fr; } }
+  .rules { display: grid; gap: 14px; }
+  .rule { display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start; }
+  .rule .ico { width: 44px; height: 44px; border-radius: 12px; background: var(--paper); border: 1px solid var(--line); display: grid; place-items: center; }
+  .rule .ico svg { width: 24px; height: 24px; }
+  .rule strong { display: block; color: var(--scorch); font-family: "Fredoka", sans-serif; font-weight: 600; font-size: 1.05rem; }
+  .rule span { color: var(--ink-soft); font-size: 0.98rem; }
+
+  /* kits */
+  .kits { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 760px) { .kits { grid-template-columns: 1fr; } }
+  .kit { background: var(--paper); border-radius: var(--radius); border: 1px solid var(--line); overflow: hidden; box-shadow: var(--shadow); }
+  .kit-head { padding: 18px 22px; display: flex; align-items: baseline; justify-content: space-between; gap: 12px; border-bottom: 1px dashed var(--line); }
+  .kit-head h3 { font-size: 1.35rem; }
+  .tag { font-family: "Fredoka", sans-serif; font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; }
+  .tag-ready { background: color-mix(in srgb, var(--teal) 16%, transparent); color: var(--teal-deep); }
+  .tag-next { background: color-mix(in srgb, var(--mustard) 30%, transparent); color: var(--scorch); }
+  .kit ol { list-style: none; margin: 0; padding: 10px 22px 18px; display: grid; }
+  .kit li { display: grid; grid-template-columns: 30px 1fr; gap: 12px; align-items: baseline; padding: 9px 0; border-bottom: 1px solid var(--line); }
+  .kit li:last-child { border-bottom: 0; }
+  .kit li .n { font-family: "Fredoka", sans-serif; font-weight: 700; color: var(--coral); font-size: 1.05rem; }
+  .kit li b { color: var(--scorch); font-weight: 800; }
+  .kit li small { display: block; color: var(--ink-soft); font-size: 0.9rem; }
+  .kit-foot { padding: 14px 22px 18px; background: var(--grain); font-size: 0.92rem; color: var(--ink); }
+
+  /* inside list */
+  .inside { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 28px; }
+  @media (max-width: 760px) { .inside { grid-template-columns: 1fr; } }
+  .inside div { padding: 18px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--paper); }
+  .inside b { display: block; color: var(--scorch); font-family: "Fredoka", sans-serif; font-weight: 600; margin-bottom: 4px; }
+  .inside span { color: var(--ink-soft); font-size: 0.95rem; }
+
+  /* curriculum */
+  .cal { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+  @media (max-width: 900px) { .cal { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 620px) { .cal { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 400px) { .cal { grid-template-columns: 1fr; } }
+  .month { background: var(--paper); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; }
+  .month .m { font-family: "Fredoka", sans-serif; font-weight: 600; color: var(--scorch); font-size: 1.05rem; display: flex; justify-content: space-between; align-items: baseline; }
+  .month .theme { font-size: 0.72rem; color: var(--teal); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 700; }
+  .month dl { margin: 0; display: grid; gap: 4px; font-size: 0.92rem; }
+  .month dt { color: var(--ink-soft); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 700; }
+  .month dd { margin: 0; color: var(--ink); }
+
+  /* timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; position: relative; }
+  .timeline::before { content: ""; position: absolute; left: 9px; top: 12px; bottom: 12px; width: 2px; background: var(--line); }
+  .timeline li { display: grid; grid-template-columns: 20px 130px 1fr; gap: 16px; padding: 12px 0; align-items: start; }
+  .timeline li::before { content: ""; width: 14px; height: 14px; border-radius: 50%; background: var(--birch); border: 3px solid var(--teal); margin-top: 6px; box-sizing: border-box; margin-left: 3px; }
+  .timeline li.next::before { border-color: var(--mustard); border-style: dashed; }
+  .timeline .when { font-family: "Fredoka", sans-serif; font-weight: 600; color: var(--scorch); }
+  .timeline .what b { color: var(--scorch); }
+  .timeline .what { color: var(--ink); }
+  @media (max-width: 560px) {
+    .timeline li { grid-template-columns: 20px 1fr; }
+    .timeline .when { grid-column: 2; }
+    .timeline .what { grid-column: 2; margin-top: -6px; }
+  }
+
+  /* team */
+  .team { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .team { grid-template-columns: 1fr; } }
+  .person { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; display: grid; gap: 8px; }
+  .person .role { font-size: 0.78rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 800; color: var(--coral); }
+  .person p { color: var(--ink-soft); font-size: 0.97rem; }
+
+  /* partners */
+  .partners { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  @media (max-width: 800px) { .partners { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px) { .partners { grid-template-columns: 1fr; } }
+  .partner { border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; background: var(--paper); }
+  .partner b { display: block; color: var(--scorch); font-family: "Fredoka", sans-serif; font-weight: 600; }
+  .partner span { font-size: 0.93rem; color: var(--ink-soft); }
+
+  /* involve */
+  .involve { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  @media (max-width: 800px) { .involve { grid-template-columns: 1fr; } }
+  .path { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; display: grid; gap: 12px; align-content: start; border-top: 6px solid var(--teal); }
+  .path:nth-child(2) { border-top-color: var(--coral); }
+  .path:nth-child(3) { border-top-color: var(--mustard); }
+  .path p { color: var(--ink-soft); font-size: 0.97rem; }
+  .path a { font-weight: 800; }
+
+  /* contact */
+  .contact { background: var(--scorch); color: var(--birch); border-radius: 20px; padding: clamp(28px, 5vw, 48px); display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; align-items: center; }
+  .contact h2, .contact .display { color: var(--birch); }
+  .contact p { color: color-mix(in srgb, var(--birch) 80%, transparent); }
+  .contact .mail { font-family: "Fredoka", sans-serif; font-size: clamp(1.1rem, 2.6vw, 1.6rem); font-weight: 600; color: var(--mustard); text-decoration: none; word-break: break-all; }
+  .contact .mail:hover { text-decoration: underline; }
+  @media (max-width: 760px) { .contact { grid-template-columns: 1fr; } }
+
+  footer { padding-block: 32px 48px; font-size: 0.88rem; color: var(--ink-soft); }
+  footer .wrap { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+  footer a { color: var(--ink-soft); }
+
+  .callout { border-left: 4px solid var(--mustard); padding: 4px 0 4px 18px; color: var(--ink); font-style: italic; }
+</style>
+</head>
+<body>
+
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Math in a Box home">
+      <svg viewBox="0 0 40 40" aria-hidden="true">
+        <rect x="4" y="12" width="32" height="24" rx="3" fill="#D9B77A"/>
+        <rect x="2" y="8" width="36" height="8" rx="2" fill="#B98F55"/>
+        <rect x="10" y="20" width="20" height="4" rx="2" fill="#1E7A8C"/>
+        <rect x="13" y="26" width="14" height="4" rx="2" fill="#E2603B"/>
+        <rect x="16" y="32" width="8" height="2" rx="1" fill="#3A2415"/>
+      </svg>
+      Math in a Box
+    </a>
+    <nav aria-label="Sections">
+      <ul>
+        <li><a href="#story">Story</a></li>
+        <li><a href="#box">What's inside</a></li>
+        <li><a href="#history">History</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#partners">Partners</a></li>
+        <li><a href="#involved">Get involved</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero-copy">
+        <span class="eyebrow">San Francisco · a student-led project</span>
+        <h1>Free, hands-on math kits for kids experiencing homelessness.</h1>
+        <p class="lede">Laser-cut wooden puzzles, games, and an illustrated booklet, packed into a box a child keeps. Every kit is designed for shelter life: no internet, no tutor, no classroom, and no table needed.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#involved">Bring kits to your families</a>
+          <a class="btn btn-ghost" href="#box">See what's inside</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <svg viewBox="0 0 420 340" role="img" aria-label="Illustration of laser-cut plywood puzzle pieces: a Tower of Hanoi, two staircase pieces, and tangram shapes">
+          <defs>
+            <linearGradient id="ply" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0" stop-color="#EBD3A2"/>
+              <stop offset="1" stop-color="#D9B77A"/>
+            </linearGradient>
+          </defs>
+          <!-- box -->
+          <rect x="30" y="150" width="360" height="160" rx="8" fill="#C9A46C"/>
+          <rect x="30" y="150" width="360" height="26" fill="#B48A52"/>
+          <rect x="20" y="130" width="380" height="30" rx="6" fill="#D9B77A"/>
+          <text x="210" y="151" text-anchor="middle" font-family="Fredoka, sans-serif" font-weight="700" font-size="16" fill="#3A2415" letter-spacing="2">MATH IN A BOX</text>
+          <!-- tower of hanoi -->
+          <rect x="60" y="112" width="120" height="12" rx="4" fill="url(#ply)" stroke="#3A2415" stroke-width="2"/>
+          <rect x="116" y="30" width="8" height="84" rx="3" fill="#3A2415"/>
+          <rect x="70" y="96" width="100" height="14" rx="7" fill="#1E7A8C" stroke="#3A2415" stroke-width="2"/>
+          <rect x="80" y="80" width="80" height="14" rx="7" fill="#E2603B" stroke="#3A2415" stroke-width="2"/>
+          <rect x="90" y="64" width="60" height="14" rx="7" fill="#F2B63B" stroke="#3A2415" stroke-width="2"/>
+          <rect x="100" y="48" width="40" height="14" rx="7" fill="#1E7A8C" stroke="#3A2415" stroke-width="2"/>
+          <!-- staircases -->
+          <g transform="translate(200 40)" stroke="#3A2415" stroke-width="2" stroke-linejoin="round">
+            <path d="M0 84 V70 H14 V56 H28 V42 H42 V28 H56 V14 H70 V0 H84 V84 Z" fill="url(#ply)"/>
+            <path d="M0 84 V70 H14 V56 H28 V42 H42 V28 H56 V14 H70 V0" fill="none" stroke="#E2603B" stroke-dasharray="3 3"/>
+          </g>
+          <g transform="translate(300 40)" stroke="#3A2415" stroke-width="2" stroke-linejoin="round">
+            <path d="M0 0 H84 V14 H70 V28 H56 V42 H42 V56 H28 V70 H14 V84 H0 Z" fill="url(#ply)"/>
+          </g>
+          <!-- tangram floating pieces -->
+          <g stroke="#3A2415" stroke-width="2" stroke-linejoin="round">
+            <path d="M60 200 L120 200 L90 230 Z" fill="#E2603B"/>
+            <path d="M140 190 L180 190 L180 230 L140 230 Z" fill="#F2B63B" transform="rotate(20 160 210)"/>
+            <path d="M210 195 L250 195 L270 225 L230 225 Z" fill="#1E7A8C"/>
+            <path d="M300 185 L360 245 L300 245 Z" fill="#EBD3A2"/>
+          </g>
+          <!-- disk in box -->
+        </svg>
+        <p class="hero-caption">Tower of Hanoi, staircases, and tangram pieces from the pilot kits</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="glance">
+    <div class="wrap">
+      <div class="stats">
+        <div class="stat"><span class="num">3,000+</span><span class="lbl">students identified as homeless in San Francisco public schools each year</span></div>
+        <div class="stat"><span class="num">7–12</span><span class="lbl">ages the kits are built for</span></div>
+        <div class="stat"><span class="num">12</span><span class="lbl">puzzles and games across two kits, built and bagged</span></div>
+        <div class="stat"><span class="num">100</span><span class="lbl">kits we aim to donate by the end of 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="story">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <span class="eyebrow">The idea</span>
+          <h2>Math isn't just the worksheets you see in school.</h2>
+          <p class="lede" style="margin-top:18px">It's also puzzles and games: a tower you rebuild one disk at a time, a tile that never repeats, a chocolate bar where the first player can always win. Math in a Box brings that kind of math, the kind found at math festivals and conferences, to children who can't get to those rooms.</p>
+          <p class="measure" style="margin-top:18px">Each box holds hands-on puzzles cut from birch plywood, a booklet that explains how to play and then the math behind it, and a few paper puzzles solved with a dry-erase marker. Nothing needs charging, and nothing needs a grown-up who already knows the answer. Kids keep the box, so a puzzle put down tonight can be picked up next month.</p>
+          <p class="callout" style="margin-top:22px">"This isn't a test, so you can take your time. Play around a bit before checking the explanations." — from the kit booklet</p>
+        </div>
+        <div>
+          <span class="eyebrow">Designed for shelter life</span>
+          <div class="rules" style="margin-top:8px">
+            <div class="rule">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1E7A8C" stroke-width="2" stroke-linecap="round"><path d="M4 12h16M12 4v16" /><circle cx="12" cy="12" r="9"/></svg></div>
+              <div><strong>No internet, no screens</strong><span>Every activity works on paper and wood. A video is a bonus, never a requirement.</span></div>
+            </div>
+            <div class="rule">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#E2603B" stroke-width="2" stroke-linecap="round"><path d="M5 19h14M7 19V9l5-5 5 5v10"/></svg></div>
+              <div><strong>No table needed</strong><span>Pieces are small enough for a bunk or a lap. Puzzle pages slide into a clear sleeve so the marker wipes clean.</span></div>
+            </div>
+            <div class="rule">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#F2B63B" stroke-width="2" stroke-linecap="round"><path d="M4 6h16v12H4zM4 10h16"/></svg></div>
+              <div><strong>Explains itself</strong><span>Each card says how to play, then flips to why it works, so a curious kid can go as deep as they like without a tutor.</span></div>
+            </div>
+            <div class="rule">
+              <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#1E7A8C" stroke-width="2" stroke-linecap="round"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/></svg></div>
+              <div><strong>Theirs to keep</strong><span>Kits are gifts, not loans. Families who move keep the box, and the next box builds on the last one.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="box">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">What's inside</span>
+        <h2>Two kits are built and ready. Six challenges each: four to build and play with, two to solve on paper.</h2>
+      </div>
+      <div class="kits">
+        <article class="kit">
+          <div class="kit-head"><h3>Kit 1 · Puzzles &amp; Games</h3><span class="tag tag-ready">Ready</span></div>
+          <ol>
+            <li><span class="n">1</span><div><b>Tower of Hanoi</b><small>A base, 3 pegs, 6 disks. Fewest moves? 1, 3, 7, 15, 31, 63… do you see the pattern?</small></div></li>
+            <li><span class="n">2</span><div><b>Hat Tiles</b><small>One shape that tiles the plane without ever repeating, found in 2022 after a 50-year hunt.</small></div></li>
+            <li><span class="n">3</span><div><b>Chomp</b><small>A 5 × 6 chocolate bar. The first player can always win, and nobody knows exactly how.</small></div></li>
+            <li><span class="n">4</span><div><b>Staircases</b><small>Two staircase pieces snap into a 10 × 11 rectangle. That's why 1 + 2 + … + 10 = 55.</small></div></li>
+            <li><span class="n">5</span><div><b>KenKen</b><small>Five puzzles with a dry-erase marker. Sudoku, but more mathy.</small></div></li>
+            <li><span class="n">6</span><div><b>Rectangles</b><small>Five area puzzles adapted from the Julia Robinson Mathematics Festival.</small></div></li>
+          </ol>
+          <div class="kit-foot">Theme: recursion and proofs without words.</div>
+        </article>
+        <article class="kit">
+          <div class="kit-head"><h3>Kit 2 · Shapes &amp; Sequences</h3><span class="tag tag-next">Ready</span></div>
+          <ol>
+            <li><span class="n">1</span><div><b>The Area of a Circle</b><small>24 wedges that rearrange into something surprisingly close to a rectangle.</small></div></li>
+            <li><span class="n">2</span><div><b>Fibonacci Squares</b><small>Eight squares with arcs that spiral together.</small></div></li>
+            <li><span class="n">3</span><div><b>Spectre Tiles</b><small>The hat's cousin: an aperiodic tile that needs no mirror images.</small></div></li>
+            <li><span class="n">4</span><div><b>Tangrams</b><small>Seven pieces, five silhouettes from easy to hard, every one with a guaranteed solution.</small></div></li>
+            <li><span class="n">5</span><div><b>Gerrymandering</b><small>Draw districts so the minority color wins. A JRMF puzzle about how elections work.</small></div></li>
+            <li><span class="n">6</span><div><b>Yin Yang</b><small>Logic grids with exactly one solution each, checked by computer.</small></div></li>
+          </ol>
+          <div class="kit-foot">Theme: tiling, area, and sequences. Revised from what kids told us about Kit 1.</div>
+        </article>
+      </div>
+
+      <div class="inside">
+        <div><b>Laser-cut pieces</b><span>3 mm birch plywood, cut and engraved at Sequoia Fabrica in Potrero Hill. Each puzzle is bagged and numbered.</span></div>
+        <div><b>An illustrated booklet</b><span>How to play, the math behind it, and solutions at the back. Written to be read by a kid without a grown-up nearby.</span></div>
+        <div><b>Paper puzzles</b><span>Five KenKen and five logic puzzles, a clear sleeve, and a dry-erase marker so they can be tried again and again.</span></div>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="history">
+    <div class="wrap">
+      <div class="cols">
+        <div>
+          <span class="eyebrow">How it got here</span>
+          <h2>From a math festival to a shelter, in about a year.</h2>
+          <p class="measure" style="margin-top:18px">Brandon started the project in the fall of 2025 after a summer hunting for puzzle ideas at math festivals. The question underneath it was simple: the best math he'd ever seen was happening in rooms two miles from home that most kids in the city would never walk into. The box is a way to carry that math out of the room.</p>
+        </div>
+        <ol class="timeline">
+          <li><span class="when">Summer 2025</span><span class="what"><b>Research and design.</b> Puzzle-hunting at MAA MathFest and the MoMath Festival; the first box concepts take shape.</span></li>
+          <li><span class="when">Dec 2025</span><span class="what"><b>Davidson Institute Ambassador.</b> Selected for the <a href="https://www.davidsongifted.org/gifted-programs/young-scholars/program-benefits/ambassador-program/class-of-2026-ambassadors/" target="_blank" rel="noopener">Class of 2026</a>, one of 40 nationwide.</span></li>
+          <li><span class="when">Feb 2026</span><span class="what"><b>Gathering 4 Gardner.</b> G4G16, the first Gathering held outside Atlanta, two miles from home. More puzzles, and permission to use several of them.</span></li>
+          <li><span class="when">Spring 2026</span><span class="what"><b>A makerspace says yes.</b> A cold email to Sequoia Fabrica turns into a free Member-Scholar membership and access to a laser cutter.</span></li>
+          <li><span class="when">Aug 2026</span><span class="what"><b>Team and pilot.</b> <a href="https://lifemoves.org/" target="_blank" rel="noopener">LifeMoves</a> agrees to a pilot at two family shelter sites. Aria joins as curriculum lead; <a href="https://www.proofschool.org/" target="_blank" rel="noopener">Proof School</a> becomes fiscal sponsor. Kits 1 and 2 are built and bagged.</span></li>
+          <li><span class="when">Aug 2026</span><span class="what"><b>A partner in San Francisco.</b> <a href="https://www.childrenofshelters.org/" target="_blank" rel="noopener">Children of Shelters</a>, which works with families in shelters across the city, agrees to accept and distribute as many boxes as we can deliver.</span></li>
+          <li class="next"><span class="when">Nov 2026</span><span class="what"><b>First kits delivered.</b> Kit 1 goes to families in San Francisco through <a href="https://www.childrenofshelters.org/" target="_blank" rel="noopener">Children of Shelters</a>, and in Daly City and Redwood City through <a href="https://lifemoves.org/" target="_blank" rel="noopener">LifeMoves</a>.</span></li>
+          <li class="next"><span class="when">2027</span><span class="what"><b>Scaling up.</b> Kits reach San Francisco shelters through Children of Shelters, more sites join, and the monthly curriculum begins.</span></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <section id="team">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Team</span>
+        <h2>Students at Proof School, with adults who help where it counts.</h2>
+      </div>
+      <div class="team">
+        <div class="person"><span class="role">Founder &amp; project lead</span><h3>Brandon Yoonsu Nam</h3><p>Designs the puzzles and booklets, cuts and assembles the kits, and works with shelter partners and funders. Davidson Institute Class of 2026 Ambassador; member-scholar at Sequoia Fabrica.</p></div>
+        <div class="person"><span class="role">Curriculum lead</span><h3>Aria Krishnamoorthy</h3><p>Leads curriculum development: designing and testing new puzzles and activities (including on a very honest younger brother) and shaping what goes into each box. Also leads the Math in a Box club at Proof School.</p></div>
+        <div class="person"><span class="role">Adult ally</span><h3>Linda Green</h3><p>Proof School faculty. Adult advisor for the project's grant work and its growth into a school club.</p></div>
+      </div>
+      <p class="measure" style="margin-top:24px; color: var(--ink-soft)">Proof School in San Francisco serves as the project's fiscal sponsor. The plan is the one that worked for Math Mail before us: a solo project becomes a student team, becomes a school club, and gets handed down.</p>
+    </div>
+  </section>
+
+  <section id="partners">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Partners &amp; supporters</span>
+        <h2>Nobody builds a hundred boxes alone.</h2>
+      </div>
+      <div class="partners">
+        <div class="partner"><b>LifeMoves</b><span>Pilot partner. Family shelter sites in Daly City and Redwood City receive the first kits.</span></div>
+        <div class="partner"><b>Children of Shelters</b><span>San Francisco distribution partner. Accepts and delivers as many boxes as we can build to families in shelters across the city.</span></div>
+        <div class="partner"><b>Sequoia Fabrica</b><span>Potrero Hill makerspace. Every wooden piece is laser-cut, engraved, or 3D-printed here, free of charge.</span></div>
+        <div class="partner"><b>Davidson Institute</b><span>Young Scholars Ambassador program, Class of 2026.</span></div>
+        <div class="partner"><b>Proof School</b><span>Fiscal sponsor and home base for the student team.</span></div>
+        <div class="partner"><b>Julia Robinson Mathematics Festival</b><span>Permission to adapt any JRMF puzzle for the kits.</span></div>
+        <div class="partner"><b>KenKen Puzzle LLC</b><span>Permission to include KenKen puzzles in the booklets.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="involved">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Get involved</span>
+        <h2>Three ways to help a box reach a kid.</h2>
+      </div>
+      <div class="involve">
+        <div class="path">
+          <h3>Host kits at your sites</h3>
+          <p>Shelters, family programs, and school partners in the Bay Area: we bring assembled kits, you hand them to families. We ask for two things back, a rough head count and honest feedback: was it fun, was anything confusing, do they want the next one?</p>
+          <a href="#contact">Start a conversation →</a>
+        </div>
+        <div class="path">
+          <h3>Fund materials</h3>
+          <p>Plywood, markers, sleeves, and printing run about $15 per kit. A gift of $375 puts Kit 1 into every family at one shelter site; $1,500 covers a hundred kits. Donations run through our fiscal sponsor, Proof School.</p>
+          <a href="#contact">Ask how to give →</a>
+        </div>
+        <div class="path">
+          <h3>Design, cut, or test</h3>
+          <p>Students who want to design a puzzle, makers with laser or 3D-printer time, and families with a seven-to-twelve-year-old willing to try a prototype and tell us what's confusing.</p>
+          <a href="#contact">Join in →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact">
+        <div>
+          <h2>Write to us.</h2>
+          <p style="margin-top:12px">Brandon reads every message. If you're a shelter, a school, a funder, or a kid with a puzzle idea, we'd like to hear from you.</p>
+        </div>
+        <div>
+          <a class="mail" href="mailto:mathinabox26@gmail.com">mathinabox26@gmail.com</a>
+          <p style="margin-top:10px; font-size:0.92rem">San Francisco, California</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Math in a Box · A Davidson Young Scholars Ambassador project</span>
+    <span>KenKen® is a registered trademark of KenKen Puzzle, LLC. Rectangles, Gerrymandering, and Yin Yang are adapted from <a href="https://jrmf.org">jrmf.org</a>.</span>
+  </div>
+</footer>
+
+</body>
+</html>
